@@ -5,33 +5,18 @@ import com.company.cars.components.Wheel;
 import com.company.cars.components.WheelSize;
 import com.company.cars.exceptions.CarCreationException;
 import com.company.cars.exceptions.StartCarException;
+import com.company.factory.AssemblyLine;
+import com.company.factory.Country;
+import com.company.factory.Factory;
 
 public class Runner {
-    public static void main(String[] args) throws CarCreationException, StartCarException {
-        Wheel[] camryWheels = new Wheel[4];
-        for (int i = 0; i < 4; i++) {
-            camryWheels[i] = new Wheel(WheelSize.WHEEL_DIAMETER_17);
-        }
-        Camry camry = new Camry("black", 200, TransmissionType.AUTOMATIC, 1000000, camryWheels);
+    public static void main(String[] args) throws Exception {
+        AssemblyLine assemblyLine = new AssemblyLine(Country.JAPAN, new Factory(Country.JAPAN));
 
-        Wheel[] solaraWheels = new Wheel[4];
-        for (int i = 0; i < 4; i++) {
-            solaraWheels[i] = new Wheel(WheelSize.WHEEL_DIAMETER_16);
-        }
-        Solara solara = new Solara("red", 220, TransmissionType.ROBOT, 2000000, solaraWheels);
-
-        Wheel[] hianceWheels = new Wheel[4];
-        for (int i = 0; i < 4; i++) {
-            hianceWheels[i] = new Wheel(WheelSize.WHEEL_DIAMETER_20);
-        }
-        Hiance hiance = new Hiance("white", 160, TransmissionType.MECHANICS, 500000, 1000, hianceWheels);
-
-
-        Wheel[] dynaWheels = new Wheel[4];
-        for (int i = 0; i < 4; i++) {
-            dynaWheels[i] = new Wheel(WheelSize.WHEEL_DIAMETER_20);
-        }
-        Dyna dyna = new Dyna("blue", 140, TransmissionType.MECHANICS, 600000, 1500, dynaWheels);
+        Camry camry = assemblyLine.createCamry("black", 1000000f);
+        Solara solara = assemblyLine.createSolara("red", 2000000f);
+        Hiance hiance = assemblyLine.createHiance("white", 500000f);
+        Dyna dyna = assemblyLine.createDyna("blue", 600000f);
 
         System.out.println("-----");
         System.out.println("Camry methods:");
