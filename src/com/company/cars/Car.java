@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Car {
-    protected int wheelSize;
+
+    protected WheelSize wheelSize;
     protected final int NUMBER_OF_WHEELS;
     protected String color;
     protected int maxSpeed;
@@ -21,7 +22,7 @@ public abstract class Car {
     protected Electrics electrics;
     protected Headlight headlight;
 
-    protected Car(int number_of_wheels, int wheelSize, String color, int maxSpeed, TransmissionType transmissionType, float price, Wheel... wheels) throws CarCreationException {
+    protected Car(int number_of_wheels, WheelSize wheelSize, String color, int maxSpeed, TransmissionType transmissionType, float price, Wheel... wheels) throws CarCreationException {
         NUMBER_OF_WHEELS = number_of_wheels;
         this.wheelSize = wheelSize;
         this.color = color;
@@ -35,7 +36,7 @@ public abstract class Car {
                 throw new CarCreationException("Wrong amount of wheels: " + wheels.length);
             }
             if (wheel.getSize() != wheelSize) {
-                throw new CarCreationException("Wheel " + wheel.toString() + " doesn't fit to this car");
+                throw new CarCreationException("Wheel " + wheel + " doesn't fit to this car");
             }
             this.wheels.add(wheel);
 
@@ -54,7 +55,7 @@ public abstract class Car {
         checkComponent(message, headlight.isFunctional(), "headlight malfunction");
         int brokenTires = 0;
         for (Wheel wheel: wheels) {
-            if (wheel.isSlashed()) {
+            if (!wheel.isFunctional()) {
                 brokenTires++;
             }
         }

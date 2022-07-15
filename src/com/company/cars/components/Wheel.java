@@ -1,27 +1,14 @@
 package com.company.cars.components;
 
-public class Wheel {
-    private int size;
-    private boolean isSlashed;
+public class Wheel extends FunctionalComponent{
+    private WheelSize wheelSize;
 
-    public Wheel(int size) {
-        this.size = size;
-        this.isSlashed = false;
+    public Wheel(WheelSize wheelSize) {
+        super();
+        this.wheelSize = wheelSize;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public boolean isSlashed() {
-        return isSlashed;
-    }
-
-    public void setSlashed(boolean slashed) {
-        isSlashed = slashed;
+    public WheelSize getSize() {
+        return wheelSize;
     }
 }
