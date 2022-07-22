@@ -4,10 +4,19 @@ import com.company.cars.components.TransmissionType;
 import com.company.cars.components.Wheel;
 import com.company.cars.components.WheelSize;
 import com.company.cars.exceptions.CarCreationException;
+import com.company.factory.Country;
 
 public abstract class CargoCar extends Car{
-    public CargoCar(int number_of_wheels, WheelSize wheelSize, String color, int maxSpeed, TransmissionType transmissionType, float price, int capacity, Wheel... wheels) throws CarCreationException {
-        super(number_of_wheels, wheelSize, color, maxSpeed, transmissionType, price, wheels);
+    public CargoCar(int number_of_wheels,
+                    WheelSize wheelSize,
+                    String color,
+                    int maxSpeed,
+                    TransmissionType transmissionType,
+                    float price,
+                    Country country,
+                    int capacity,
+                    Wheel... wheels) throws CarCreationException {
+        super(number_of_wheels, wheelSize, color, maxSpeed, transmissionType, price, country, wheels);
         this.capacity = capacity;
     }
 

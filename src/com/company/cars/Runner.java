@@ -8,6 +8,7 @@ import com.company.cars.exceptions.StartCarException;
 import com.company.factory.AssemblyLine;
 import com.company.factory.Country;
 import com.company.factory.Factory;
+import com.company.storage.Storage;
 
 public class Runner {
     public static void main(String[] args) throws Exception {
@@ -90,5 +91,22 @@ public class Runner {
         System.out.println("Try to stop dyna....");
         dyna.stopMoving();
         System.out.println("Dyna moving: " + dyna.isMoving);
+
+        System.out.println("-----");
+        System.out.println("Storage:");
+        Storage storage = new Storage();
+        storage.addCargoCar(hiance);
+        storage.addCargoCar(dyna);
+        storage.addConvertibleCar(solara);
+        storage.addPassengerCar(camry);
+        System.out.println(storage.getAvailableCars());
+        System.out.println(storage.getCargoCar());
+        System.out.println(storage.getAvailableCars());
+        System.out.println(storage.getConvertibleCar());
+        System.out.println(storage.getAvailableCars());
+        System.out.println(storage.getPassengerCar());
+        System.out.println(storage.getAvailableCars());
+        System.out.println(storage.getCargoCarAmount());
+        System.out.println(storage.getPassengerCar());
     }
 }

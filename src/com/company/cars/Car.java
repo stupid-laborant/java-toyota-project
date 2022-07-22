@@ -3,12 +3,14 @@ package com.company.cars;
 import com.company.cars.components.*;
 import com.company.cars.exceptions.CarCreationException;
 import com.company.cars.exceptions.StartCarException;
+import com.company.factory.Country;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Car {
 
+    protected Country country;
     protected WheelSize wheelSize;
     protected final int NUMBER_OF_WHEELS;
     protected String color;
@@ -22,7 +24,14 @@ public abstract class Car {
     protected Electrics electrics;
     protected Headlight headlight;
 
-    protected Car(int number_of_wheels, WheelSize wheelSize, String color, int maxSpeed, TransmissionType transmissionType, float price, Wheel... wheels) throws CarCreationException {
+    protected Car(int number_of_wheels,
+                  WheelSize wheelSize,
+                  String color,
+                  int maxSpeed,
+                  TransmissionType transmissionType,
+                  float price,
+                  Country country,
+                  Wheel... wheels) throws CarCreationException {
         NUMBER_OF_WHEELS = number_of_wheels;
         this.wheelSize = wheelSize;
         this.color = color;
@@ -30,6 +39,7 @@ public abstract class Car {
         this.transmissionType = transmissionType;
         this.price = price;
         this.isMoving = false;
+        this.country = country;
         this.wheels = new ArrayList<>(NUMBER_OF_WHEELS);
         for (Wheel wheel: wheels) {
             if (wheels.length != NUMBER_OF_WHEELS) {

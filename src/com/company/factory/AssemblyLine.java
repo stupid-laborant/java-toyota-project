@@ -41,7 +41,7 @@ public class AssemblyLine {
         for (int i = 0; i < Camry.NUMBER_OF_WHEELS; i++) {
             wheels[i] = factory.createWheel(Camry.WHEEL_SIZE);
         }
-        return new Camry(color, 200, TransmissionType.AUTOMATIC, price, wheels);
+        return new Camry(color, 200, TransmissionType.AUTOMATIC, price, country, wheels);
     }
 
     public Solara createSolara(String color, Float price) throws CarCreationException {
@@ -53,7 +53,7 @@ public class AssemblyLine {
         for (int i = 0; i < Solara.NUMBER_OF_WHEELS; i++) {
             wheels[i] = factory.createWheel(Solara.WHEEL_SIZE);
         }
-        return new Solara(color, 200, TransmissionType.MECHANICS, price, wheels);
+        return new Solara(color, 200, TransmissionType.MECHANICS, price, country, wheels);
     }
 
     public Dyna createDyna(String color, Float price) throws CarCreationException {
@@ -65,7 +65,7 @@ public class AssemblyLine {
         for (int i = 0; i < Dyna.NUMBER_OF_WHEELS; i++) {
             wheels[i] = factory.createWheel(Dyna.WHEEL_SIZE);
         }
-        return new Dyna(color, 140, TransmissionType.MECHANICS, price, 1500, wheels);
+        return new Dyna(color, 140, TransmissionType.MECHANICS, price, country, 1500, wheels);
     }
 
 
@@ -78,6 +78,6 @@ public class AssemblyLine {
         for (int i = 0; i < Hiance.NUMBER_OF_WHEELS; i++) {
             wheels[i] = factory.createWheel(Hiance.WHEEL_SIZE);
         }
-        return new Hiance(color, 160, TransmissionType.MECHANICS, price, 1000, wheels);
+        return new Hiance(color, 160, TransmissionType.MECHANICS, price, country, 1000, wheels);
     }
 }
