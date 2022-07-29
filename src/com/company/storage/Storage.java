@@ -1,9 +1,13 @@
 package com.company.storage;
 
-import com.company.cars.Car;
-import com.company.cars.CargoCar;
-import com.company.cars.ConvertibleCar;
-import com.company.cars.PassengerCar;
+import com.company.cars.*;
+import com.company.cars.components.TransmissionType;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Storage {
 
@@ -130,5 +134,60 @@ public class Storage {
 
     public int getConvertibleCarAmount() {
         return getFirstFreeIndex(convertibleCars);
+    }
+
+    public Car getProperCar(double price) {
+        if (availableCars == 0) { return null; }
+        int passengerCarIndex = getIndexOfSuitableCar(passengerCars, price);
+        int convertibleCarIndex = getIndexOfSuitableCar(convertibleCars, price);
+        int cargoCarIndex = getIndexOfSuitableCar(cargoCars, price);
+        if (passengerCarIndex == -1 && convertibleCarIndex == -1 && cargoCarIndex == -1) {
+            return null;
+        }
+        PassengerCar passengerCar = passengerCarIndex != -1 ? passengerCars[passengerCarIndex] : null;
+        ConvertibleCar convertibleCar = convertibleCarIndex != -1 ? convertibleCars[convertibleCarIndex] : null;
+        CargoCar cargoCar = cargoCarIndex != -1 ? cargoCars[cargoCarIndex] : null;
+
+        Car car = getHigherPreiceCar(passengerCar, convertibleCar, cargoCar);
+        if (car instanceof CargoCar) {
+            return pickupExactCar(cargoCars, cargoCarIndex);
+        } else if (car instanceof ConvertibleCar) {
+            return pickupExactCar(convertibleCars, convertibleCarIndex);
+        } else if (car instanceof PassengerCar) {
+            return pickupExactCar(passengerCars, passengerCarIndex);
+        } else {
+            return null;
+        }
+    }
+
+    private Car getHigherPreiceCar(Car ... cars) {
+        List<Car> filteredcars = Arrays.stream(cars).filter(Objects::nonNull).sorted(Comparator.comparing(Car::getPrice)).collect(Collectors.toList());
+        return filteredcars.get(filteredcars.size()-1);
+    }
+
+    private int getIndexOfSuitableCar(Car[] cars, double money) {
+        double minDifference = Double.MAX_VALUE;
+        double currentDifference = 0;
+        int pointer = -1;
+        int i = 0;
+        while (cars[i] != null) {
+            currentDifference = money - cars[i].getPrice();
+            if (currentDifference >= 0  && currentDifference <= minDifference) {
+                minDifference = currentDifference;
+                pointer = i;
+            }
+            i++;
+        }
+        return pointer;
+    }
+
+    private Car pickupExactCar(Car[] cars, int index) {
+        Car car = cars[index];
+        if (index != cars.length - 1) {
+            System.arraycopy(cars, index+1, cars, index, cars.length-index-1);
+        }
+        cars[cars.length-1] = null;
+        availableCars--;
+        return car;
     }
 }

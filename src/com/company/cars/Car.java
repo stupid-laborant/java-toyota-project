@@ -17,7 +17,7 @@ public abstract class Car {
     protected int maxSpeed;
     protected TransmissionType transmissionType;
     protected boolean isMoving;
-    protected float price;
+    protected double price;
     protected List<Wheel> wheels;
     protected Tank tank;
     protected Engine engine;
@@ -100,4 +100,11 @@ public abstract class Car {
         }
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public boolean isMoving() {
+        return isMoving;
+    }
 }
