@@ -1,10 +1,8 @@
-package com.company.persons;
+package com.company.sales;
 
 import com.company.cars.Car;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Cashier {
     private static double[] income = new double[1000];

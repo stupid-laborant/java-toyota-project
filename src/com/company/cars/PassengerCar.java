@@ -5,6 +5,7 @@ import com.company.cars.components.Wheel;
 import com.company.cars.components.WheelSize;
 import com.company.cars.exceptions.CarCreationException;
 import com.company.factory.Country;
+import com.company.sales.CarPrices;
 
 public abstract class PassengerCar extends Car{
     public PassengerCar(int number_of_wheels,
@@ -13,9 +14,10 @@ public abstract class PassengerCar extends Car{
                         int maxSpeed,
                         TransmissionType transmissionType,
                         float price,
+                        CarPrices cost,
                         Country country,
                         Wheel... wheels) throws CarCreationException {
-        super(number_of_wheels, wheelSize, color, maxSpeed, transmissionType, price, country, wheels);
+        super(number_of_wheels, wheelSize, color, maxSpeed, transmissionType, price, cost, country, wheels);
         this.cruiseControl = false;
     }
 

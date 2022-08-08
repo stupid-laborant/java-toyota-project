@@ -4,6 +4,7 @@ import com.company.cars.components.*;
 import com.company.cars.exceptions.CarCreationException;
 import com.company.cars.exceptions.StartCarException;
 import com.company.factory.Country;
+import com.company.sales.CarPrices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public abstract class Car {
     protected TransmissionType transmissionType;
     protected boolean isMoving;
     protected double price;
+    public final CarPrices cost;
     protected List<Wheel> wheels;
     protected Tank tank;
     protected Engine engine;
@@ -30,6 +32,7 @@ public abstract class Car {
                   int maxSpeed,
                   TransmissionType transmissionType,
                   float price,
+                  CarPrices cost,
                   Country country,
                   Wheel... wheels) throws CarCreationException {
         NUMBER_OF_WHEELS = number_of_wheels;
@@ -38,6 +41,7 @@ public abstract class Car {
         this.maxSpeed = maxSpeed;
         this.transmissionType = transmissionType;
         this.price = price;
+        this.cost = cost;
         this.isMoving = false;
         this.country = country;
         this.wheels = new ArrayList<>(NUMBER_OF_WHEELS);

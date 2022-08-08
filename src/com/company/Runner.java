@@ -1,20 +1,12 @@
 package com.company;
 
-import com.company.cars.Camry;
-import com.company.cars.Dyna;
-import com.company.cars.Hiance;
-import com.company.cars.Solara;
-import com.company.cars.components.TransmissionType;
-import com.company.cars.components.Wheel;
-import com.company.cars.components.WheelSize;
-import com.company.cars.exceptions.CarCreationException;
-import com.company.cars.exceptions.StartCarException;
 import com.company.factory.AssemblyLine;
 import com.company.factory.Country;
 import com.company.factory.Factory;
-import com.company.persons.Buyer;
-import com.company.persons.Cashier;
-import com.company.persons.Manager;
+import com.company.sales.Boss;
+import com.company.sales.Buyer;
+import com.company.sales.Cashier;
+import com.company.sales.Manager;
 import com.company.storage.Storage;
 
 public class Runner {
@@ -146,6 +138,22 @@ public class Runner {
         System.out.println(manager.sellCar(buyer8));
 
         System.out.println(cashier.getTotalIncome());
+
+        manager.generateReport();
+
+        storage1.addPassengerCar(assemblyLine1.createCamry("yellow", 10000f));
+        storage1.addPassengerCar(assemblyLine1.createCamry("yellow", 11000f));
+        Manager manager2 = new Manager("Juniour", assemblyLine1, storage1);
+        Cashier cashier1 = new Cashier();
+        manager2.setCashier(cashier1);
+        Buyer taxist1 = new Buyer("ahmed", 10000d);
+        Buyer taxist2 = new Buyer("magomed", 11000d);
+        manager2.sellCar(taxist1);
+        manager2.sellCar(taxist2);
+        System.out.println(cashier1.getTotalIncome());
+
+        Boss boss = new Boss(new Manager[]{manager, manager2}, "alvian");
+        boss.createReport();
 
 
 

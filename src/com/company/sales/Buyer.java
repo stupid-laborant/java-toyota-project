@@ -1,4 +1,4 @@
-package com.company.persons;
+package com.company.sales;
 
 import com.company.cars.Car;
 
